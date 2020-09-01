@@ -1,20 +1,26 @@
+import csv
 # pcost.py
 #
-# Exercise 1.27
+# Exercise 1.32
+
 
 def portfolio_cost(filename):
     """Calculates the total market share cost"""
-    with open(filename, 'rt') as file:
-        next(file)
+    with open(filename) as file:
+        rows = csv.reader(file)
+        next(rows)
         total_sum = 0
-        for line in file:
+        for line in rows:
             try:
-                row = line.split(',')
-                total_sum += int(row[1]) * float(row[2])
+                total_sum += int(line[1]) * float(line[2])
             except ValueError:
                 print('wrong data format in line\n', line)
         return total_sum
 
 
+# returns 44671.15
+# cost = portfolio_cost('data/portfolio.csv')
+
+# returns two faulty lines
 cost = portfolio_cost('data/missing.csv')
 print(f'Total cost: {cost}')
