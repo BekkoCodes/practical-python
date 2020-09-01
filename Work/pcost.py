@@ -1,4 +1,7 @@
 import csv
+import sys
+
+
 # pcost.py
 #
 # Exercise 1.32
@@ -18,9 +21,10 @@ def portfolio_cost(filename):
         return total_sum
 
 
-# returns 44671.15
-# cost = portfolio_cost('data/portfolio.csv')
+if len(sys.argv) == 2:
+    filename = sys.argv[1]
+else:
+    filename = 'data/portfolio.csv'
 
-# returns two faulty lines
-cost = portfolio_cost('data/missing.csv')
+cost = portfolio_cost(filename)
 print(f'Total cost: {cost}')
