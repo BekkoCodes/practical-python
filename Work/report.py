@@ -63,5 +63,6 @@ def make_report_table(report):
     separator = '----------'
     print('%10s %10s %10s %10s' % headers)
     print('%10s %10s %10s %10s' % (separator, separator, separator, separator))
-    for r in report:
-        print('%10s %10d %10.2f %10.2f' % r)
+    for (name, shares, price, change) in report:
+        formatted_price = f'${price:>0.2f}'
+        print('%10s %10d %10s %10.2f' % (name, shares, formatted_price, change))
