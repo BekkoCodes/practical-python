@@ -56,3 +56,12 @@ def make_report(portfolio, prices):
         change = price - float(stock['price'])
         report.append((name, shares, price, change))
     return report
+
+
+def make_report_table(report):
+    headers = ('Name', 'Shares', 'Price', 'Change')
+    separator = '----------'
+    print('%10s %10s %10s %10s' % headers)
+    print('%10s %10s %10s %10s' % (separator, separator, separator, separator))
+    for r in report:
+        print('%10s %10d %10.2f %10.2f' % r)
