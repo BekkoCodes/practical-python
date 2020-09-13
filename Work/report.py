@@ -10,6 +10,7 @@ def read_portfolio(filename):
 
     with open(filename, 'rt') as f:
         rows = csv.reader(f)
+        next(rows)
         for row in rows:
             portfolio.append({'name': row[0], 'shares': int(row[1]), 'price': float(row[2])})
 
@@ -44,3 +45,14 @@ def compute_gain_loss():
         current_value += prices[stock['name']] * int(stock['shares'])
 
     print(f'total cost = {portfolio_value}\ngain = {portfolio_value - current_value}')
+
+
+def make_report(portfolio, prices):
+    report = []
+    for stock in portfolio:
+        name = stock['name']
+        shares = int(stock['shares'])
+        price = float(prices[name])
+        change = price - float(stock['price'])
+        report.append((name, shares, price, change))
+    return report
