@@ -13,11 +13,11 @@ def portfolio_cost(filename):
         rows = csv.reader(file)
         next(rows)
         total_sum = 0
-        for line in rows:
+        for row_number, row in enumerate(rows):
             try:
-                total_sum += int(line[1]) * float(line[2])
+                total_sum += int(row[1]) * float(row[2])
             except ValueError:
-                print('wrong data format in line\n', line)
+                print(f'Row {row_number}: Bad row: {row}')
         return total_sum
 
 
